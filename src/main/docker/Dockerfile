@@ -2,7 +2,7 @@ FROM registry.cn-beijing.aliyuncs.com/yilihuo/java_alpine_jre:8_121
 
 MAINTAINER lyzhang "zhangluyan@jsh.com"
 
-ENV APP_NAME $ARTIFACTID-$ARTIFACTVERSION.jar
+ENV APP_NAME dingtalk-0.0.1-SNAPSHOT.jar
 ENV WORK_PATH /data/dingtalk/
 
 #VOLUME
