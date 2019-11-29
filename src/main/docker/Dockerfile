@@ -2,8 +2,8 @@ FROM registry.cn-beijing.aliyuncs.com/yilihuo/java_alpine_jre:8_121
 
 MAINTAINER lyzhang "zhangluyan@jsh.com"
 
-ENV APP_NAME @project.build.finalName@.@project.packaging@
-ENV WORK_PATH /data/@project.name@/
+ENV APP_NAME $project.build.finalName.$project.packaging
+ENV WORK_PATH /data/$project.name/
 
 #VOLUME
 VOLUME ["/data/logs", "/tmp/data"]
