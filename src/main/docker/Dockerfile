@@ -2,7 +2,7 @@ FROM registry.cn-beijing.aliyuncs.com/yilihuo/java_alpine_jre:8_121
 
 MAINTAINER lyzhang "zhangluyan@jsh.com"
 
-ENV APP_NAME $project.build.finalName.$project.packaging
+ENV APP_NAME $ARTIFACTID-$ARTIFACTVERSION.jar
 ENV WORK_PATH /data/$project.name/
 
 #VOLUME
@@ -15,4 +15,4 @@ WORKDIR $WORK_PATH
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom"]
 
 # CMD
-CMD ["-jar", "@project.build.finalName@.@project.packaging@"]
+CMD ["-jar", "$ARTIFACTID-$ARTIFACTVERSION.jar"]
