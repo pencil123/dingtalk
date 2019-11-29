@@ -3,7 +3,7 @@ FROM registry.cn-beijing.aliyuncs.com/yilihuo/java_alpine_jre:8_121
 MAINTAINER lyzhang "zhangluyan@jsh.com"
 
 ENV APP_NAME $ARTIFACTID-$ARTIFACTVERSION.jar
-ENV WORK_PATH /data/$project.name/
+ENV WORK_PATH /data/dingtalk/
 
 #VOLUME
 VOLUME ["/data/logs", "/tmp/data"]
@@ -12,7 +12,7 @@ ADD $APP_NAME $WORK_PATH
 #COPY . $WORK_PATH/
 WORKDIR $WORK_PATH
 # ENTRYPOINT
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom"]
+ENTRYPOINT ["java","-jar","$APP_NAME"]
 
 # CMD
-CMD ["-jar", "$ARTIFACTID-$ARTIFACTVERSION.jar"]
+#CMD ["-jar", "$ARTIFACTID-$ARTIFACTVERSION.jar"]
