@@ -46,6 +46,11 @@
   <build>
     <resources>
       <resource>
+        <directory>${project.basedir}/src/main/docker</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/Dockerfile</include>
+        </includes>
         <targetPath>${project.basedir}/target/docker</targetPath>
       </resource>
     </resources>
