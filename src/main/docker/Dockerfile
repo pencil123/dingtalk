@@ -8,7 +8,7 @@ ENV WORK_PATH /data/dingtalk/
 #VOLUME
 VOLUME ["/data/logs", "/tmp/data"]
 
-ADD target/$APP_NAME $WORK_PATH
+ADD $APP_NAME $WORK_PATH
 #COPY . $WORK_PATH/
 WORKDIR $WORK_PATH
 # ENTRYPOINT
