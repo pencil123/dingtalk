@@ -44,6 +44,11 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <targetPath>${project.basedir}/target/docker</targetPath>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -52,9 +57,10 @@
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>docker-maven-plugin</artifactId>
+        <version>1.0.0</version>
         <configuration>
           <imageName>${project.artifactId}</imageName>
-          <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+          <dockerDirectory>${project.basedir}/target/docker</dockerDirectory>
           <imageTags>
             <imageTag>${project.version}</imageTag>
           </imageTags>
@@ -62,7 +68,7 @@
             <resource>
               <targetPath>/</targetPath>
               <directory>${project.build.directory}</directory>
-              <include>${project.build.finalName}</include>
+              <include>${project.build.finalName}.${project.packaging}</include>
             </resource>
           </resources>
         </configuration>
