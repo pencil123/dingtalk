@@ -17,6 +17,8 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <docker.repostory>registry.cn-shenzhen.aliyuncs.com</docker.repostory>
+    <docker.registry.name>devops-lyz</docker.registry.name>
   </properties>
 
   <dependencies>
@@ -64,7 +66,7 @@
         <artifactId>docker-maven-plugin</artifactId>
         <version>1.0.0</version>
         <configuration>
-          <imageName>${project.artifactId}</imageName>
+          <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}</imageName>
           <dockerDirectory>${project.basedir}/target/docker</dockerDirectory>
           <imageTags>
             <imageTag>${project.version}</imageTag>
