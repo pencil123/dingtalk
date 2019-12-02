@@ -18,7 +18,8 @@ public class Prometheus {
 
   @RequestMapping(value = "/receive", method = RequestMethod.POST)
   public void alterMsgRev(HttpServletRequest request){
-    JSONObject jsonParam = this.getJSONParam(request);
+    JSONObject jsonParam = editJSON(getJSONParam(request));
+    System.out.println(jsonParam.toJSONString());
   }
 
   public JSONObject getJSONParam(HttpServletRequest request){
@@ -42,6 +43,17 @@ public class Prometheus {
     }
     return jsonParam;
   }
+
+  public JSONObject editJSON(JSONObject json) {
+    JSONObject message = new JSONObject();
+    JSONObject text = new JSONObject();
+    message.put("msgtype","text");
+    JSONObject alert = (JSONObject) json.getJSONArray("alerts").get(0);
+    text.put("content",alert.getJSONObject("annotations").getString("message"));
+    message.put("text",text);
+    return  message;
+  }
+
 }
 
 

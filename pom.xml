@@ -17,7 +17,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <docker.repostory>registry.cn-shenzhen.aliyuncs.com</docker.repostory>
+    <docker.repostory>registry-vpc.cn-shenzhen.aliyuncs.com</docker.repostory>
     <docker.registry.name>devops-lyz</docker.registry.name>
   </properties>
 
