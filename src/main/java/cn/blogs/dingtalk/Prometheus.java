@@ -19,7 +19,7 @@ public class Prometheus {
   @RequestMapping(value = "/receive", method = RequestMethod.POST)
   public void alterMsgRev(HttpServletRequest request){
     JSONObject jsonParam = editJSON(getJSONParam(request));
-    System.out.println(jsonParam.toJSONString());
+    MsgSend.send(jsonParam);
   }
 
   public JSONObject getJSONParam(HttpServletRequest request){
