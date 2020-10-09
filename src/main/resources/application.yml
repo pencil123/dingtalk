@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: diy
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator  # 访问根路径
+#      exposure:
+#        include: "*"

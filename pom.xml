@@ -38,9 +38,27 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.51</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.aliyun</groupId>
@@ -85,7 +103,8 @@
         <version>1.0.0</version>
         <configuration>
           <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}</imageName>
-          <dockerHost>http://10.250.12.6:2375</dockerHost>
+          <!--suppress UnresolvedMavenProperty -->
+          <dockerHost>${diy.dockerhost}</dockerHost>
           <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
           <imageTags>
             <imageTag>${project.version}</imageTag>

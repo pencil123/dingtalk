@@ -1,5 +1,6 @@
-package cn.blogs.dingtalk;
+package cn.blogs.dingtalk.utils;
 
+import cn.blogs.dingtalk.controller.Prometheus;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import java.io.BufferedReader;
@@ -8,22 +9,29 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
-import sun.net.www.http.HttpClient;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * @author lyzhang
  * @since 2019/12/2 16:04
  */
+@Component
 public class MsgSend {
-  public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=638c1d7637a53452456f05360239594e1cce5148303748364b2c30f17c59a262";
 
-  public static boolean send(JSONObject message) {
+  @Value("${dingtalk.url}")
+  public String WEBHOOK_TOKEN;
 
+  private Logger logger = LoggerFactory.getLogger(MsgSend.class);
+
+  public  boolean send(JSONObject message) {
     PrintWriter out = null;
     BufferedReader in = null;
     String result = "";
+    logger.info(WEBHOOK_TOKEN);
     try {
       URL realUrl = new URL(WEBHOOK_TOKEN);
       // 打开和URL之间的连接
@@ -41,6 +49,7 @@ public class MsgSend {
       // 获取URLConnection对象对应的输出流
       out = new PrintWriter(conn.getOutputStream());
       // 发送请求参数
+      logger.info(message.toJSONString());
       out.print(JSON.toJSONString(message));
       // flush输出流的缓冲
       out.flush();
