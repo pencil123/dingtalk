@@ -17,7 +17,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <docker.repostory>registry-vpc.cn-shenzhen.aliyuncs.com</docker.repostory>
+    <docker.repostory>registry.cn-qingdao.aliyuncs.com</docker.repostory>
     <docker.registry.name>devops-lyz</docker.registry.name>
   </properties>
 
@@ -42,12 +42,31 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.51</version>
     </dependency>
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>alibaba-dingtalk-service-sdk</artifactId>
+      <version>1.0.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.sun.jmx</groupId>
+          <artifactId>jmxri</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.jdmk</groupId>
+          <artifactId>jmxtools</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.jms</groupId>
+          <artifactId>jms</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 
   <build>
     <resources>
       <resource>
-        <directory>${project.basedir}/src/main/docker</directory>
+        <directory>src/main/docker</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/Dockerfile</include>
@@ -66,7 +85,8 @@
         <version>1.0.0</version>
         <configuration>
           <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}</imageName>
-          <dockerDirectory>${project.basedir}/target/docker</dockerDirectory>
+          <dockerHost>http://10.250.12.6:2375</dockerHost>
+          <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
           <imageTags>
             <imageTag>${project.version}</imageTag>
           </imageTags>
@@ -77,6 +97,7 @@
               <include>${project.build.finalName}.${project.packaging}</include>
             </resource>
           </resources>
+          <serverId>aliyun</serverId>
         </configuration>
         <executions>
           <execution>

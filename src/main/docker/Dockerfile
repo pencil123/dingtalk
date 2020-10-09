@@ -1,9 +1,9 @@
-FROM registry.cn-beijing.aliyuncs.com/yilihuo/java_alpine_jre:8_121
+FROM java
 
 MAINTAINER lyzhang "zhangluyan@jsh.com"
 
-ENV APP_NAME @project.build.finalName@.@project.packaging@
-ENV WORK_PATH /data/@project.name@/
+ENV APP_NAME dingtalk-0.0.1-SNAPSHOT.jar
+ENV WORK_PATH /
 
 #VOLUME
 VOLUME ["/data/logs", "/tmp/data"]
@@ -15,4 +15,4 @@ WORKDIR $WORK_PATH
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom"]
 
 # CMD
-CMD ["-jar", "@project.build.finalName@.@project.packaging@"]
+CMD ["-jar", "/data/dingtalk/dingtalk-0.0.1-SNAPSHOT.jar"]

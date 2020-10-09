@@ -17,7 +17,7 @@ import sun.net.www.http.HttpClient;
  * @since 2019/12/2 16:04
  */
 public class MsgSend {
-  public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=7b8c15ff897f8b2dd0b67492a1b4a850a9c088db7f719a69f735db72f6eed258";
+  public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=638c1d7637a53452456f05360239594e1cce5148303748364b2c30f17c59a262";
 
   public static boolean send(JSONObject message) {
 
