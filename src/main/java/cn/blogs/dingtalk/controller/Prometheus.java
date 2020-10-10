@@ -1,6 +1,7 @@
 package cn.blogs.dingtalk.controller;
 
 import cn.blogs.dingtalk.utils.MsgSend;
+import cn.blogs.dingtalk.utils.MsgSend2;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import java.io.BufferedReader;
@@ -25,7 +26,7 @@ public class Prometheus {
   private Logger logger = LoggerFactory.getLogger(Prometheus.class);
 
   @Autowired
-  private MsgSend msgSend;
+  private MsgSend2 msgSend;
 
   @RequestMapping(value = "/receive", method = RequestMethod.POST)
   public String alterMsgRev(HttpServletRequest request){
