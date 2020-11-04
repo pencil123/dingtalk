@@ -1,5 +1,6 @@
 package cn.blogs.dingtalk.controller;
 
+import cn.blogs.dingtalk.rabbitmq.BasicPublisher;
 import cn.blogs.dingtalk.utils.MsgSend;
 import cn.blogs.dingtalk.utils.MsgSend2;
 import com.alibaba.fastjson.JSONArray;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,8 @@ public class Prometheus {
 
   @Autowired
   private MsgSend2 msgSend;
+  @Autowired
+  private BasicPublisher basicPublisher;
 
   @RequestMapping(value = "/receive", method = RequestMethod.POST)
   public String alterMsgRev(HttpServletRequest request){
@@ -35,7 +39,14 @@ public class Prometheus {
 
   }
 
-  public JSONObject getJSONParam(HttpServletRequest request){
+
+  @GetMapping("/mqpublisher")
+  public String mqPublisher(){
+    basicPublisher.sendMsg("nice to meet you!");
+    return "Success";
+  }
+
+  private JSONObject getJSONParam(HttpServletRequest request){
     JSONObject jsonParam = null;
     try {
       // 获取输入流
@@ -57,7 +68,7 @@ public class Prometheus {
     return jsonParam;
   }
 
-  public boolean editJSON(JSONObject json) {
+  private boolean editJSON(JSONObject json) {
     JSONObject messageSingle = new JSONObject();
     JSONObject messageLink = new JSONObject();
 

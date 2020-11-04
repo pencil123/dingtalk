@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: diy
+  rabbitmq:
+    host: 10.250.7.21
+    port: 30730
+    username: guest
+    password: guest
 
 management:
   endpoints:
